@@ -15,25 +15,7 @@ let input = search.value
 
 //use async function to fetch weather API .
 async function fetchWeatherApi(){
-    
-    const uniqueTimestamp = Date.now();
-    const apiKey = '7abf0318cd22476dac3221445232209'; 
-    
-
-    try{
-    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${input}&timestamp=${uniqueTimestamp}`;  
-    const weatherApi = await fetch(apiUrl);
-    if(weatherApi.ok){
-    const getData = await weatherApi.json()
-    console.log(getData.location);
-    nameOfCity.textContent = `${getData.location.name}, ${getData.location.country}`;
-    console.log(yourDate)
-    }
-    //show this error if try fails.
-    }
-    catch{
-        console.error("not able to fetch API");
-    }
+  
 }
 //use async function to fetch giphy API 
 //after fetching fix relevant information to your DOM element.
@@ -41,14 +23,20 @@ async function fetchWeatherApi(){
 //write a function for the toggle farenheit and celsius 
  
 
- document.querySelector(".search__city").addEventListener("keydown", (e)=>{
-   if (e.key === "Enter") {
-       // Prevent the default form submission behavior
-       e.preventDefault();
-      
-        //Fetch weather data when Enter key is pressed
-       fetchWeatherApi(search);
-       e.target.value = "";
-      
-     }
- });
+
+
+
+
+
+
+
+
+
+// document.querySelector(".search__city").addEventListener("keydown", async (e) => {
+//   if (e.key === "Enter") {
+//       e.preventDefault();
+//       const input = search.value; // Capture the current input value
+//       await fetchWeatherApi(input); // Pass the input value to the function
+//       search.value = ""; // Clear the input field
+//   }
+// });
