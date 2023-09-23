@@ -18,6 +18,7 @@ async function fetchWeatherApi(){
   const searchInput = document.querySelector(".search__city");
   const cityName = searchInput.value;
   const toggleSwitch = document.querySelector(".toggle");
+  const slider = document.querySelector(".slider.round")
   const text = document.querySelector(".text");
   const cloud = document.querySelector(".cloud")
 
@@ -38,24 +39,28 @@ async function fetchWeatherApi(){
   weatherImage.src = data.current.condition.icon;
   text.textContent = data.current.condition.text;
   cloud.textContent = data.current.cloud;
-  console.log(data.current.condition)
-  if(toggleSwitch.checked){
-    `${weatherCondition.textContent = data.current.temp_c}C`;
+  console.log(data.location)
+  toggleSwitch.addEventListener("click", toggleTemperature)
+
+   function toggleTemperature() {
+      const temperatureElement = document.querySelector(".weather__condition"); 
+      if (toggleSwitch.checked) {
+         temperatureElement.textContent =  `${data.current.temp_c}°C`; // Display temperature in Celsius
+         console.log("checked")
+      } else {
+          temperatureElement.textContent = `${data.current.temp_f}°F`; // Display temperature in Fahrenheit
+          console.log("unchecked")
+      }
   }
-  else{
-    `${weatherCondition.textContent = data.current.temp_f}F`;
-  }
-  }
+}
 }
   catch{
     console.error("unable to fetch data")
   }
 }
-document.addEventListener("dblclick", fetchWeatherApi)
-//use async function to fetch giphy API 
-//after fetching fix relevant information to your DOM element.
-//write a function that  changes the picture for present weather condition;
-//write a function for the toggle farenheit and celsius 
+
+
+
  
 
 
@@ -67,11 +72,8 @@ document.addEventListener("dblclick", fetchWeatherApi)
 
 
 
-// document.querySelector(".search__city").addEventListener("keydown", async (e) => {
-//   if (e.key === "Enter") {
-//       e.preventDefault();
-//       const input = search.value; // Capture the current input value
-//       await fetchWeatherApi(input); // Pass the input value to the function
-//       search.value = ""; // Clear the input field
-//   }
-// });
+ document.querySelector(".search__city").addEventListener("keydown", (e) => {
+   if (e.key === "Enter") {
+   fetchWeatherApi()
+ }
+ });
