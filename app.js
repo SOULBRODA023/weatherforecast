@@ -6,16 +6,20 @@
 //Steps to follow!!
 
 //first try to obtain important elements from the HTML for DOM manipulation.
-let nameOfCity = document.querySelector(".city");
-let time = document.querySelector(".time__date");
-let weatherCondition = document.querySelector(".weather__condition");
-let region = document.querySelector(".region");
-let search = document.querySelector(".search__city");
-let input = search.value
+const nameOfCity = document.querySelector(".city");
+const time = document.querySelector(".time__date");
+const weatherCondition = document.querySelector(".weather__condition");
+const region = document.querySelector(".region");
+const search = document.querySelector(".search__city");
+const input = search.value
 
 //use async function to fetch weather API .
 async function fetchWeatherApi(){
-  
+  let myApiKey = '';
+  let myApiUrl ='';
+  let getWeather = await fetch (myApiUrl);
+  let data = await getWeather.json();
+  console.log("data.location");
 }
 //use async function to fetch giphy API 
 //after fetching fix relevant information to your DOM element.
