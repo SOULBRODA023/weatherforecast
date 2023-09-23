@@ -14,7 +14,7 @@ async function fetchWeatherApi(){
 
   try{
   let myApiKey = '2471772679344b31b0d121026232309';
-  let myApiUrl =` http://api.weatherapi.com/v1/current.json?key=${myApiKey}&q=${cityName}`;
+  let myApiUrl =` https://api.weatherapi.com/v1/current.json?key=${myApiKey}&q=${cityName}`;
   
   //fetch the API using try 
   let getWeather = await fetch (myApiUrl, {
