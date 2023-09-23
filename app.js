@@ -6,21 +6,37 @@
 //Steps to follow!!
 
 //first try to obtain important elements from the HTML for DOM manipulation.
-const nameOfCity = document.querySelector(".city");
-const time = document.querySelector(".time__date");
-const weatherCondition = document.querySelector(".weather__condition");
-const region = document.querySelector(".region");
-const search = document.querySelector(".search__city");
-const input = search.value
+
+
 
 //use async function to fetch weather API .
 async function fetchWeatherApi(){
-  let myApiKey = '';
-  let myApiUrl ='';
+  const City = document.querySelector(".city");
+  const time = document.querySelector(".time__date");
+  const weatherCondition = document.querySelector(".weather__condition");
+  const region = document.querySelector(".region");
+  const searchInput = document.querySelector(".search__city");
+  const cityName = searchInput.value;
+
+
+  try{
+  let myApiKey = '2471772679344b31b0d121026232309';
+  let myApiUrl =` http://api.weatherapi.com/v1/current.json?key=${myApiKey}&q=${cityName}`;
+  //fetch the API using try 
   let getWeather = await fetch (myApiUrl);
+  //if fetching API was successful , do the following;
+  if(getWeather.ok){
   let data = await getWeather.json();
-  console.log("data.location");
+  City.textContent = data.location.name
+  console.log(data.location);
+  
+  }
 }
+  catch{
+    console.error("unable to fetch data")
+  }
+}
+document.addEventListener("dblclick", fetchWeatherApi)
 //use async function to fetch giphy API 
 //after fetching fix relevant information to your DOM element.
 //write a function that  changes the picture for present weather condition;
